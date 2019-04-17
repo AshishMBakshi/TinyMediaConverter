@@ -2,6 +2,8 @@
 
 This is a Windows desktop (WPF) app that converts photos, videos, and Living Images to a 16-bit RGB-565 (TSV) format viewable on [TinyCircuits'](https://tinycircuits.com/) TinyDuino / TinyScreen+ platform, with some extras.
 
+![Screenshot](https://user-images.githubusercontent.com/2073983/56299954-064cbf80-6103-11e9-9788-e33fc45bbd57.png)
+
 ## Getting Started
 
 To process any media, first add the file(s) to the queue using the "Add" button at the top left. Next, select an output folder by clicking the "Browse" button on the right. Then press the respective button to perform whichever conversion you'd like. Any status updates will be shown in the textbox at the bottom.
