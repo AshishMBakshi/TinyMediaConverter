@@ -1,6 +1,6 @@
 # Tiny Media Converter
 
-This is a Windows desktop (WPF) app that converts photos, videos, and Windows Living Images to a 16-bit RGB-565 (TSV) format viewable on [TinyCircuits'](https://tinycircuits.com/) TinyDuino / TinyScreen+ platform, with some extras.
+This is a Windows desktop (WPF) app that converts photos, videos, and Living Images to a 16-bit RGB-565 (TSV) format viewable on [TinyCircuits'](https://tinycircuits.com/) TinyDuino / TinyScreen+ platform, with some extras.
 
 ## Getting Started
 
