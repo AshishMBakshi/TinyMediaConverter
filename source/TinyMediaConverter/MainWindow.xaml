@@ -1,0 +1,57 @@
+﻿<Window x:Class="ImageConverterWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImageConverterWPF"
+        mc:Ignorable="d"
+        Title="Tiny Media Converter" Height="700" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="353*"/>
+            <ColumnDefinition Width="351*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lblInput" Content="Source media:" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnAddFiles" Content="Add" HorizontalAlignment="Left" Margin="11,26,0,0" VerticalAlignment="Top" Width="75" Click="btnAddFiles_Click"/>
+        <Slider x:Name="slOutputType" HorizontalAlignment="Left" Margin="6,0,0,333.5" VerticalAlignment="Bottom" Height="20" Width="320" Maximum="16" SmallChange="16" Minimum="8" LargeChange="16" Value="16" Ticks="{x:Null}" IsSnapToTickEnabled="True" TickFrequency="16" IsEnabled="False"/>
+        <Label x:Name="lblSliderLeft" Content="8-bit (RGB-332)" HorizontalAlignment="Left" Margin="5,0,0,307.5" VerticalAlignment="Bottom" Height="28" Width="94"/>
+        <Label x:Name="lblSliderRight" Content="16-bit (RGB-565)" HorizontalAlignment="Left" Margin="231,0,0,307.5" VerticalAlignment="Bottom" Height="28" Width="99" TextBlock.TextAlignment="Right" />
+        <Button x:Name="btnGo" Content="Convert Images" HorizontalAlignment="Right" Margin="0,0,11,283.5" VerticalAlignment="Bottom" Width="91" Click="btnGo_Click" Grid.Column="1" Background="#FFFFBBBB"/>
+        <TextBox x:Name="txtStatus" Margin="8,0,7,6.5" TextWrapping="Wrap" Grid.ColumnSpan="2" Height="268" VerticalAlignment="Bottom" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="txtStatus_TextChanged" />
+        <Label x:Name="lblOutputWidth" Content="Output width (pixels):" HorizontalAlignment="Left" Margin="5,0,0,281.5" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="txtOutputWidth" HorizontalAlignment="Left" Height="22" Margin="134,0,0,281.5" TextWrapping="Wrap" Text="96" VerticalAlignment="Bottom" Width="41" TextChanged="txtOutputWidth_TextChanged"/>
+        <Label x:Name="lblOutputHeight" Content="height:" HorizontalAlignment="Left" Margin="181,0,0,281.5" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="txtOutputHeight" HorizontalAlignment="Left" Height="22" Margin="231,0,0,281.5" TextWrapping="Wrap" Text="64" VerticalAlignment="Bottom" Width="41" TextChanged="txtOutputHeight_TextChanged"/>
+        <Button x:Name="btnRemoveFiles" Content="Remove" HorizontalAlignment="Left" Margin="100,26,0,0" VerticalAlignment="Top" Width="75" Click="btnRemoveFiles_Click"/>
+        <ListBox x:Name="lbSourceImages" Margin="10,55,211,395.5" Grid.ColumnSpan="2" SelectionMode="Extended" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Label x:Name="lblOutputExtension" Content="extension:" HorizontalAlignment="Left" Margin="276,0,0,281.5" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="txtOutputExtension" HorizontalAlignment="Left" Height="24" Margin="343,0,0,279.5" TextWrapping="Wrap" Text="TSV" VerticalAlignment="Bottom" Width="34" TextChanged="txtOutputExtension_TextChanged"/>
+        <Label x:Name="lblOutputFolder" Content="Output folder:" HorizontalAlignment="Left" Margin="5,0,0,363.5" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="txtOutputDir" Height="22" Margin="95,0,99,363.5" VerticalAlignment="Bottom" Grid.ColumnSpan="2" IsReadOnly="True"/>
+        <Button x:Name="btnBrowseDestFolder" Content="Browse" HorizontalAlignment="Right" Margin="0,0,11,363.5" VerticalAlignment="Bottom" Width="74" Click="btnBrowseDestFolder_Click" Grid.Column="1"/>
+        <Label x:Name="lblRotate" Content="Rotate (Clockwise):" Margin="190.5,0,89,325.5" Grid.Column="1" Height="26" VerticalAlignment="Bottom"/>
+        <ComboBox x:Name="cbRotationAngle" Grid.Column="1" Margin="0,0,11,327.5" SelectedIndex="0" SelectionChanged="cbRotationAngle_SelectionChanged" HorizontalAlignment="Right" Width="74" Height="22" VerticalAlignment="Bottom">
+            <ComboBoxItem Content="0"/>
+            <ComboBoxItem Content="90"/>
+            <ComboBoxItem Content="180"/>
+            <ComboBoxItem Content="270"/>
+        </ComboBox>
+        <Button x:Name="btnExtractLIvideos" Content="Extract Living Image MP4s" Grid.Column="1" Margin="0,0,107,283.5" VerticalAlignment="Bottom" Click="btnExtractLIvideos_Click" HorizontalAlignment="Right" Width="164" Background="#FFBBE8FF"/>
+        <Button x:Name="btnMakeVideo" Content="Frames -&gt; Video" Margin="0,0,275,283.5" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="112" Click="btnMakeVideo_Click" Grid.Column="1" Background="#FFBBE8FF"/>
+        <MediaElement x:Name="meMedia" Grid.Column="1" Height="64" Margin="0,39,61,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="96" MediaOpened="meMedia_MediaOpened" MediaEnded="meMedia_MediaEnded" LoadedBehavior="Manual" />
+        <Label x:Name="lblVideo" Content="Video" HorizontalAlignment="Left" Margin="190.5,0,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Button x:Name="btnProcessVideo" Content="Convert Videos" Grid.Column="1" Margin="0,121,59,0" VerticalAlignment="Top" Background="#FFFFBBBB" Click="btnProcessVideo_Click" HorizontalAlignment="Right" Width="100"/>
+        <CheckBox x:Name="chkBigEndian" Content="Big Endian" Grid.Column="1" Margin="0,327,292,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="76" IsChecked="True" Checked="chkBigEndian_Checked"/>
+        <Button x:Name="btnSaveVideoSnapshot" Grid.Column="1" HorizontalAlignment="Left" Margin="237.5,165,0,0" VerticalAlignment="Top" Width="100" Height="20" Content="Save Snapshot" Click="btnSaveVideoSnapshot_Click" IsEnabled="False"/>
+        <Button x:Name="btnAboutHelp" Content="About / Help" HorizontalAlignment="Left" Margin="357,3,0,0" VerticalAlignment="Top" Width="84" Grid.ColumnSpan="2" Background="#FFBBDAFF" Click="BtnAboutHelp_Click"/>
+
+    </Grid>
+</Window>
